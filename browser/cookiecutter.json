@@ -1,0 +1,12 @@
+{
+    "folder_name": "my-ts-package",
+    "package_name": "{{ cookiecutter.folder_name|lower|replace(' ', '-') }}",
+    "package_description": "Typescript package",
+    "package_version": "0.0.1",
+    "package_entrypoint": "index",
+    "package_export": "{{ cookiecutter.folder_name|replace('-', ' ')|replace('_', ' ')|title|replace(' ', '') }}",
+    "author": "Myself",
+    "_copy_without_render": [
+        ".github/*"
+    ]
+}

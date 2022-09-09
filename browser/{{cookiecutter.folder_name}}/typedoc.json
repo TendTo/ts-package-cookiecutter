@@ -1,0 +1,45 @@
+{
+    "$schema": "https://typedoc.org/schema.json",
+    "name": "Topic-Carousel",
+    "tsconfig": "tsconfig.json",
+    "entryPoints": [
+        "src",
+    ],
+    "out": "docs",
+    "plugin": [
+        "@knodes/typedoc-plugin-pages",
+        "typedoc-plugin-missing-exports"
+    ],
+    "includeVersion": true,
+    "excludeExternals": true,
+    "internalModule": "Internal components",
+    "readme": "README.md",
+    "pluginPages": {
+        "pages": [
+            {
+                "title": "Getting Started",
+                "source": "Getting-Started.md"
+            },
+            {
+                "title": "Examples",
+                "source": "Examples.md",
+            },
+            {
+                "title": "Documentation",
+                "source": "Documentation.md",
+            },
+            {
+                "title": "Development",
+                "source": "Development.md",
+            },
+            {
+                "title": "FAQ",
+                "source": "FAQ.md",
+            },
+            {
+                "title": "License and Copyright",
+                "source": "License-and-Copyright.md",
+            },
+        ]
+    }
+}
