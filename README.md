@@ -101,3 +101,43 @@ lint: use eslint to lint the code
 lint-staged: apply linting on the pre-commit hook
 docs: generate the documentation
 ```
+
+## Publishing the package
+
+Once you are satisfied with the state of the package, you can start thinking about publishing it.
+First of all, build the package with
+
+```bash
+npm run build
+```
+
+To test if the behavior is the one you expect, use the command
+
+```bash
+npm pack
+```
+
+to create an archive with the files you will distribuite.
+Use it in another javascript or typescript project by installing it with
+
+```bash
+npm install <path to the .tgz file>
+```
+
+If everything is working as intended, you may want to publish your hard work on the npm registry.
+To do so, you can use
+
+```bash
+npm publish
+```
+
+> ❗️ Always remember to run `npm run build` before publishing or packaging.
+> If you feel like that's the only operation you need, consider adding
+>
+> ```json
+> {
+>   "prepublish": "npm run build"
+> }
+> ```
+>
+> to your _package.json_
