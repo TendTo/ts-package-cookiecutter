@@ -6,7 +6,7 @@ export default {
   output: [
     {
       format: 'iife',
-      file: 'public/dist/bundle/topiccarousel.js',
+      file: 'public/dist/bundle/{{cookiecutter.package_name}}.js',
       name: '{{cookiecutter.package_export}}',
       sourcemap: true,
     },

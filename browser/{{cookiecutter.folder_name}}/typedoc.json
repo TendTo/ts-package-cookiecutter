@@ -1,6 +1,6 @@
 {
     "$schema": "https://typedoc.org/schema.json",
-    "name": "Topic-Carousel",
+    "name": "{{cookiecutter.package_name}}",
     "tsconfig": "tsconfig.json",
     "entryPoints": [
         "src",

@@ -1,6 +1,6 @@
 <details>
   <summary><b>What is this?</b></summary>
-  <p>Topic-Carousel is a simple and lightweight library for the web that makes easier to create a carousel of elements with the possibility of filtering by topic.</p>
+  <p>{{cookiecutter.package_name}} is a simple and lightweight library that does things.</p>
 </details>
 
 <details>

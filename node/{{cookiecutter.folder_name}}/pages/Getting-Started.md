@@ -17,18 +17,6 @@ const { Test } = require('{{cookiecutter.package_name}}');
 import { Test } from '{{cookiecutter.package_name}}';
 ```
 
-## Web Browser
-
-It is generally better practice (for security reasons) to copy the [library](https://unpkg.com/{{cookiecutter.package_name}}@{{cookiecutter.package_version}}/dist/bundle/{{cookiecutter.package_name}}.min.js) to your own web server and serve it yourself, but for prototyping (or laziness) you can load it directly in the html file with the **script** tag.
-
-```html
-<script
-  src="https://unpkg.com/{{cookiecutter.package_name}}@{{cookiecutter.package_version}}/dist/bundle/{{cookiecutter.package_name}}.min.js"
-  type="application/javascript"
-  async
-></script>
-```
-
 ## Basic example
 
 ```js

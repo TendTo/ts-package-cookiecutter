@@ -1,11 +1,11 @@
 If you want to actively help with the development of this package, you can do so following these steps:
 
-- open an [issue](https://github.com/TendTo/Topic-Carousel/issues/new) on the Github repository
-- [fork](https://github.com/TendTo/Topic-Carousel/fork) the repository
+- open an [issue](https://github.com/{{cookiecutter.author}}/{{cookiecutter.package_name}}/issues/new) on the Github repository
+- [fork](https://github.com/{{cookiecutter.author}}/{{cookiecutter.package_name}}/fork) the repository
 - clone the newly created fork with `git clone <fork-url>`
 - make changes
 - commit push the changes to your fork
-- create a [pull request](https://github.com/TendTo/Topic-Carousel/compare). Make sure to link the original issue by adding "#\<issue number\>" in the description of the pull request
+- create a [pull request](https://github.com/{{cookiecutter.author}}/{{cookiecutter.package_name}}/compare). Make sure to link the original issue by adding "#\<issue number\>" in the description of the pull request
 
 > ℹ️ If you are unfamiliar with git and its commands, I suggest you first check out these resources: [git docs](https://git-scm.com/docs/gittutorial), [w3school](https://www.w3schools.com/git/), [gitbranching](https://learngitbranching.js.org/)
 
