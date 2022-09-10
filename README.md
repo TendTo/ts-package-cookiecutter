@@ -53,6 +53,7 @@ Things you may want to add to your _package.json_
     "url": "https://github.com"
   },
   "keywords": [""]
+  // ...
 }
 ```
 
@@ -94,22 +95,21 @@ test:unit: run the unit tests # [Browser only]
 clean: remove both lib and dist folders
 prebuild: make sure the folders are cleared before building
 build: build the package for node (cjs, esm) and browser (single bundle, esm)
-postbuild: generate type bindings
+build:cjs: build the package with common js imports # [node only]
+build:esm: build the package with common js imports # [node only]
+postbuild: generate type bindings # [Browser only]
 build:dev: build the project for the local web server # [Browser only]
 format: use prettier to format the code
 lint: use eslint to lint the code
 lint-staged: apply linting on the pre-commit hook
 docs: generate the documentation
+prepack: build the package before packing
+prepublish: build the package before publishing
 ```
 
 ## Publishing the package
 
 Once you are satisfied with the state of the package, you can start thinking about publishing it.
-First of all, build the package with
-
-```bash
-npm run build
-```
 
 To test if the behavior is the one you expect, use the command
 
@@ -131,13 +131,76 @@ To do so, you can use
 npm publish
 ```
 
-> ❗️ Always remember to run `npm run build` before publishing or packaging.
-> If you feel like that's the only operation you need, consider adding
->
-> ```json
-> {
->   "prepublish": "npm run build"
-> }
-> ```
->
-> to your _package.json_
+## ❔ Troubleshooting and FAQ
+
+<details>
+  <summary>
+    <b>
+      Error TS1259: Module '"path/to/module"' can only be default-imported using
+      the 'esModuleInterop' flag
+    </b>
+  </summary>
+
+It means you are importing some javascript library whose exports does not follow the **esm** convention.  
+You need to add [esModuleInterop](https://www.typescriptlang.org/tsconfig#esModuleInterop) to your _tsconfig.json_ file
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "esModuleInterop": true
+  }
+}
+```
+
+This will result in the addition of some utility functions to handle _default_ and _star_ imports.
+
+</details>
+
+<details>
+  <summary>
+    <b>
+      Can I use this framework to develop a library for React?
+    </b>
+  </summary>
+
+This template already supports the creation of React libraries.
+If you intend to access the **dom** elements, you may want to add the DOM lib to the _tsconfig.json_ file.
+
+```json
+// tsconfig.json
+{
+  "compilerOptions": {
+    "lib": ["ES6", "DOM"]
+  }
+}
+```
+
+Furthermore, you may want to lock the React library version you know your library works with by adding a peer dependency in the _package.json_ file
+
+```json
+{
+  "peerDependencies": {
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0"
+  }
+}
+```
+
+</details>
+
+<details>
+  <summary>
+    <b>
+      How can I reduce the package size?
+    </b>
+
+  </summary>
+
+To reduce the final package size, i would consider the following.
+
+- choose only one between common js or esm exports, and compile only for that
+- bundle everything in a single file changing the configuration(or adding) a tool like [rollup.js](https://rollupjs.org/), which is already present in the Browser version of this cookiecutter, [webpack](https://webpack.js.org/) or [tsup](https://github.com/egoist/tsup)
+- use a tool like [terser](https://terser.org/) to minify as much as possible the output file
+
+</details>
