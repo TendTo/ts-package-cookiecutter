@@ -6,6 +6,13 @@
   "main": "./lib/cjs/{{cookiecutter.package_entrypoint}}.js",
   "module": "./lib/esm/{{cookiecutter.package_entrypoint}}.js",
   "types": "./lib/cjs/{{cookiecutter.package_entrypoint}}.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/cjs/{{cookiecutter.package_entrypoint}}.d.ts",
+      "import": "./lib/esm/{{cookiecutter.package_entrypoint}}.js",
+      "require": "./lib/cjs/{{cookiecutter.package_entrypoint}}.js"
+    }
+  },
   "files": [
     "src",
     "lib"
@@ -16,16 +23,18 @@
     "test": "mocha -r ts-node/register tests/unit --recursive --extension .test.ts --timeout 60000 --exit",
     "clean": "rimraf lib",
     "prebuild": "npm run clean",
-    "build": "rollup -c config/rollup.config.js",
-    "postbuild": "tsc --emitDeclarationOnly",
+    "build": "concurrently \"npm:build:cjs\" \"npm:build:esm\"",
+    "build:cjs": "tsc -p tsconfig.json",
+    "build:esm": "tsc -p config/tsconfig.esm.json",
     "format": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write",
     "lint": "eslint --ext=.tsx,.ts .",
     "lint-staged": "lint-staged -c config/.lintstagedrc.json",
-    "docs": "npx typedoc --options typedoc.json"
+    "docs": "npx typedoc --options typedoc.json",
+    "prepack": "npm run build",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@knodes/typedoc-plugin-pages": "^0.23.1",
-    "@rollup/plugin-typescript": "^8.5.0",
     "@types/chai": "^4.3.3",
     "@types/mocha": "^9.1.1",
     "@typescript-eslint/eslint-plugin": "^5.36.2",
@@ -39,10 +48,7 @@
     "lint-staged": "^13.0.3",
     "mocha": "^10.0.0",
     "prettier": "^2.7.1",
-    "rollup": "^2.79.0",
-    "rollup-plugin-sourcemaps": "^0.6.3",
     "ts-node": "^10.9.1",
-    "tslib": "^2.4.0",
     "typedoc": "^0.23.14",
     "typedoc-plugin-missing-exports": "^1.0.0",
     "typescript": "^4.8.2"

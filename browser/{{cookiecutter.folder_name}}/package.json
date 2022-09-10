@@ -6,6 +6,13 @@
   "main": "./lib/cjs/{{cookiecutter.package_entrypoint}}.js",
   "module": "./lib/esm/{{cookiecutter.package_entrypoint}}.js",
   "types": "./lib/cjs/{{cookiecutter.package_entrypoint}}.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/cjs/{{cookiecutter.package_entrypoint}}.d.ts",
+      "import": "./lib/esm/{{cookiecutter.package_entrypoint}}.js",
+      "require": "./lib/cjs/{{cookiecutter.package_entrypoint}}.js"
+    }
+  },
   "files": [
     "dist",
     "src",
@@ -30,7 +37,9 @@
     "format": "prettier --config .prettierrc 'src/**/*.ts' 'test/**/*.ts' --write",
     "lint": "eslint --ext=.tsx,.ts .",
     "lint-staged": "lint-staged -c config/.lintstagedrc.json",
-    "docs": "npx typedoc --options typedoc.json"
+    "docs": "npx typedoc --options typedoc.json",
+    "prepack": "npm run build",
+    "prepublish": "npm run build"
   },
   "devDependencies": {
     "@knodes/typedoc-plugin-pages": "^0.23.1",
