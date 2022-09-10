@@ -9,6 +9,7 @@
         "declarationMap": true,
         "strict": true,
         "declarationDir": "lib/cjs",
+        "outDir": "lib/cjs",
         "forceConsistentCasingInFileNames": true,
         "strictFunctionTypes": true,
         "strictBindCallApply": true,
